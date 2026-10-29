@@ -1,0 +1,90 @@
+[
+  {
+    "id": "1",
+    "name": "Wireless Headphones",
+    "price": 4999,
+    "oldPrice": 6999,
+    "category": "Electronics",
+    "rating": 4.6,
+    "badge": "Sale",
+    "image": "https://picsum.photos/seed/headphones/800/600",
+    "description": "Over-ear Bluetooth headphones with 30-hour battery life, deep bass, and a comfortable padded fit for all-day listening."
+  },
+  {
+    "id": "2",
+    "name": "Mechanical Keyboard",
+    "price": 3499,
+    "oldPrice": null,
+    "category": "Electronics",
+    "rating": 4.8,
+    "badge": null,
+    "image": "https://picsum.photos/seed/keyboard/800/600",
+    "description": "Compact mechanical keyboard with tactile switches, RGB backlight, and a durable aluminium frame for daily typing."
+  },
+  {
+    "id": "3",
+    "name": "Smart Watch",
+    "price": 7999,
+    "oldPrice": 9999,
+    "category": "Electronics",
+    "rating": 4.4,
+    "badge": "New",
+    "image": "https://picsum.photos/seed/watch/800/600",
+    "description": "Fitness smartwatch with heart-rate tracking, sleep insights, and a bright always-on display that lasts up to 7 days."
+  },
+  {
+    "id": "4",
+    "name": "Bluetooth Speaker",
+    "price": 2599,
+    "oldPrice": 3299,
+    "category": "Electronics",
+    "rating": 4.5,
+    "badge": null,
+    "image": "https://picsum.photos/seed/speaker/800/600",
+    "description": "Portable speaker with punchy sound, splash-resistant build, and 12-hour playback for home, desk, or travel."
+  },
+  {
+    "id": "5",
+    "name": "Cotton T-Shirt",
+    "price": 899,
+    "oldPrice": 1299,
+    "category": "Fashion",
+    "rating": 4.3,
+    "badge": "Sale",
+    "image": "https://picsum.photos/seed/tshirt/800/600",
+    "description": "Soft mid-weight cotton tee with a relaxed fit and clean crew neck. Easy everyday staple for any wardrobe."
+  },
+  {
+    "id": "6",
+    "name": "Denim Jacket",
+    "price": 2499,
+    "oldPrice": null,
+    "category": "Fashion",
+    "rating": 4.7,
+    "badge": null,
+    "image": "https://picsum.photos/seed/jacket/800/600",
+    "description": "Classic denim jacket with a structured silhouette, metal buttons, and pockets that work from weekday to weekend."
+  },
+  {
+    "id": "7",
+    "name": "Leather Wallet",
+    "price": 1499,
+    "oldPrice": null,
+    "category": "Accessories",
+    "rating": 4.6,
+    "badge": "Bestseller",
+    "image": "https://picsum.photos/seed/wallet/800/600",
+    "description": "Slim genuine-leather wallet with card slots, a note compartment, and a compact profile that fits a front pocket."
+  },
+  {
+    "id": "8",
+    "name": "Aviator Sunglasses",
+    "price": 1299,
+    "oldPrice": 1799,
+    "category": "Accessories",
+    "rating": 4.2,
+    "badge": null,
+    "image": "https://picsum.photos/seed/sunglasses/800/600",
+    "description": "Lightweight aviator sunglasses with UV protection, a metal frame, and a timeless shape that pairs with any outfit."
+  }
+]

@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import products from '../../data/products.json';
+
+export function getStaticPaths() {
+	return products.map((product) => ({
+		params: { id: String(product.id) },
+		props: { product },
+	}));
+}
+
+const { product } = Astro.props;
+const formatPrice = (price: number) => `₹${price.toLocaleString('en-IN')}`;
+const badgeClass =
+	product.badge === 'Sale' ? 'badge badge-sale' : product.badge === 'New' ? 'badge badge-new' : 'badge';
+---
+
+<Layout title={`${product.name} | MyShop`}>
+	<nav class="breadcrumb" aria-label="Breadcrumb">
+		<a href="/">Home</a>
+		<span>/</span>
+		<a href="/products">Products</a>
+		<span>/</span>
+		<span>{product.name}</span>
+	</nav>
+	<article class="detail">
+		<div class="product-card__image">
+			{product.badge && <span class={badgeClass}>{product.badge}</span>}
+			<img src={product.image} alt={product.name} width="800" height="600" />
+		</div>
+		<div class="detail-body">
+			<p class="eyebrow">{product.category}</p>
+			<h1>{product.name}</h1>
+			<p class="rating" aria-label={`Rated ${product.rating} out of 5`}>★ {product.rating}</p>
+			<p class="price">
+				{formatPrice(product.price)}
+				{product.oldPrice ? <s>{formatPrice(product.oldPrice)}</s> : null}
+			</p>
+			<p>{product.description}</p>
+			<div class="detail-actions">
+				<div class="qty-stepper" aria-label="Quantity">
+					<button type="button" data-qty-step="-1" aria-label="Decrease quantity">−</button>
+					<span id="qty-value">1</span>
+					<button type="button" data-qty-step="1" aria-label="Increase quantity">+</button>
+				</div>
+				<button class="btn" type="button" data-add={product.id}>Add to cart</button>
+			</div>
+		</div>
+	</article>
+</Layout>

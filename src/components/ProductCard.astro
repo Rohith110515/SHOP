@@ -1,0 +1,40 @@
+---
+interface Props {
+	product: {
+		id: string;
+		name: string;
+		price: number;
+		oldPrice: number | null;
+		category: string;
+		rating: number;
+		badge: string | null;
+		image: string;
+	};
+}
+
+const { product } = Astro.props;
+const formatPrice = (price: number) => `₹${price.toLocaleString('en-IN')}`;
+const badgeClass =
+	product.badge === 'Sale' ? 'badge badge-sale' : product.badge === 'New' ? 'badge badge-new' : 'badge';
+---
+
+<article class="product-card" data-name={product.name} data-category={product.category}>
+	<a href={`/products/${product.id}`}>
+		<div class="product-card__image">
+			{product.badge && <span class={badgeClass}>{product.badge}</span>}
+			<img src={product.image} alt={product.name} width="800" height="600" />
+		</div>
+	</a>
+	<div class="product-card__body">
+		<p class="eyebrow">{product.category}</p>
+		<h3>
+			<a href={`/products/${product.id}`}>{product.name}</a>
+		</h3>
+		<p class="rating" aria-label={`Rated ${product.rating} out of 5`}>★ {product.rating}</p>
+		<p class="price">
+			{formatPrice(product.price)}
+			{product.oldPrice ? <s>{formatPrice(product.oldPrice)}</s> : null}
+		</p>
+		<button class="btn" type="button" data-add={product.id}>Add to cart</button>
+	</div>
+</article>

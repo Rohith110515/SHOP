@@ -1,23 +1,41 @@
+---
+import '../styles/global.css';
+import products from '../data/products.json';
+
+const { title = 'MyShop' } = Astro.props;
+const path = Astro.url.pathname;
+const isHome = path === '/';
+const isProducts = path.startsWith('/products');
+const isCart = path.startsWith('/cart');
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<header class="site-header">
+			<a class="logo" href="/">My<span>Shop</span></a>
+			<nav class="site-nav" aria-label="Main">
+				<a class:list={{ 'is-active': isHome }} href="/">Home</a>
+				<a class:list={{ 'is-active': isProducts }} href="/products">Products</a>
+				<a class:list={['cart-link', { 'is-active': isCart }]} href="/cart">
+					Cart
+					<span class="cart-badge" id="cart-count">0</span>
+				</a>
+			</nav>
+		</header>
+		<main class="page">
+			<slot />
+		</main>
+		<footer class="site-footer">© 2026 MyShop · A frontend demo store. No real checkout.</footer>
+		<div id="toast" class="toast" role="status" aria-live="polite"></div>
+		<script id="products-data" type="application/json" set:html={JSON.stringify(products)}></script>
+		<script src="/cart.js" is:inline></script>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
