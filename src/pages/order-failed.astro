@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/checkout.css";
+---
+<Layout title="Payment failed (demo)">
+  <div class="dp-wrap" data-dp-page="failed">
+    <div class="dp-result">
+      <div class="dp-icon bad" aria-hidden="true">✕</div>
+      <h1>Payment failed (demo)</h1>
+      <p style="color:#64748b">This was a simulated failure. No money was charged, and your cart is still saved.</p>
+
+      <div class="dp-card">
+        <p class="dp-reason" id="bad-reason" role="alert"></p>
+        <dl class="dp-details" style="margin-top:1rem">
+          <div><dt>Order reference</dt><dd id="bad-order-ref"></dd></div>
+          <div><dt>Amount</dt><dd id="bad-amount"></dd></div>
+          <div><dt>Payment method tried</dt><dd id="bad-method"></dd></div>
+        </dl>
+      </div>
+
+      <div class="dp-actions">
+        <button type="button" id="retry-btn" class="dp-btn">Retry payment</button>
+        <a class="dp-btn dp-btn--ghost" href="/cart">Back to cart</a>
+      </div>
+    </div>
+
+    <script is:inline src="/demo-pay.js"></script>
+  </div>
+</Layout>

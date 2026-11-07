@@ -1,0 +1,102 @@
+---
+import Layout from "../layouts/Layout.astro";
+import products from "../data/products.json";
+import "../styles/checkout.css";
+import "../styles/shipping.css";
+
+const productsJson = JSON.stringify(products).replace(/</g, "\\u003c");
+---
+<Layout title="Checkout">
+  <div class="dp-wrap" data-dp-page="checkout">
+    <ol class="dp-steps" aria-label="Checkout progress">
+      <li class="done"><span class="n">✓</span>Cart</li>
+      <li class="current"><span class="n">2</span>Details &amp; delivery</li>
+      <li><span class="n">3</span>Payment</li>
+      <li><span class="n">4</span>Confirmation</li>
+    </ol>
+
+    <h1>Checkout</h1>
+
+    <div id="checkout-empty" class="dp-card dp-empty" hidden>
+      <h2>Your cart is empty</h2>
+      <p>Add some products before checking out.</p>
+      <a class="dp-btn" href="/products">Continue shopping</a>
+    </div>
+
+    <div id="checkout-content">
+      <div class="dp-banner" role="note">
+        <span aria-hidden="true">⚠️</span>
+        <span><strong>Demo checkout.</strong> Payment and shipping are both simulated. No real payment is taken and no real parcel is shipped. Please don't enter real card details.</span>
+      </div>
+
+      <div class="dp-grid">
+        <form id="checkout-form" class="dp-card" novalidate>
+          <h2>Contact &amp; shipping details</h2>
+          <div class="dp-fields">
+            <div class="dp-field">
+              <label for="f-name">Full name</label>
+              <input class="dp-input" id="f-name" type="text" autocomplete="name" placeholder="Rohit Kumar" />
+              <p class="dp-err" id="e-name" role="alert"></p>
+            </div>
+            <div class="dp-field">
+              <label for="f-email">Email</label>
+              <input class="dp-input" id="f-email" type="email" autocomplete="email" placeholder="you@example.com" />
+              <p class="dp-err" id="e-email" role="alert"></p>
+            </div>
+            <div class="dp-field">
+              <label for="f-phone">Mobile number</label>
+              <input class="dp-input" id="f-phone" type="tel" autocomplete="tel" inputmode="numeric" placeholder="9876543210" />
+              <p class="dp-err" id="e-phone" role="alert"></p>
+            </div>
+            <div class="dp-field">
+              <label for="f-pincode">PIN code</label>
+              <input class="dp-input" id="f-pincode" type="text" inputmode="numeric" maxlength="6" autocomplete="postal-code" placeholder="641001" />
+              <p class="dp-err" id="e-pincode" role="alert"></p>
+            </div>
+            <div class="dp-field full">
+              <label for="f-address">Address</label>
+              <textarea class="dp-input" id="f-address" autocomplete="street-address" placeholder="House no., street, area"></textarea>
+              <p class="dp-err" id="e-address" role="alert"></p>
+            </div>
+            <div class="dp-field">
+              <label for="f-city">City</label>
+              <input class="dp-input" id="f-city" type="text" autocomplete="address-level2" placeholder="Coimbatore" />
+              <p class="dp-err" id="e-city" role="alert"></p>
+            </div>
+            <div class="dp-field">
+              <label for="f-state">State</label>
+              <input class="dp-input" id="f-state" type="text" autocomplete="address-level1" placeholder="Tamil Nadu" />
+              <p class="dp-err" id="e-state" role="alert"></p>
+            </div>
+          </div>
+
+          <div class="ship-box" id="ship-box">
+            <h2>Delivery options</h2>
+            <p class="dp-hint" id="ship-origin"></p>
+            <div id="ship-status" role="status" aria-live="polite">Enter your 6-digit PIN code to see couriers and delivery dates.</div>
+            <div id="ship-options" class="ship-options" role="radiogroup" aria-label="Delivery options"></div>
+            <p class="dp-err" id="e-delivery" role="alert"></p>
+            <p class="dp-hint">Demo tip: PIN codes starting with 0 or 9 are treated as not serviceable, so you can show the failure case.</p>
+          </div>
+        </form>
+
+        <aside class="dp-card dp-summary" aria-label="Order summary">
+          <h2>Order summary</h2>
+          <div id="summary-items"></div>
+          <div class="dp-row"><span>Subtotal</span><span id="sum-subtotal"></span></div>
+          <div class="dp-row"><span>Shipping</span><span id="sum-shipping"></span></div>
+          <div class="dp-row total"><span>Total</span><span id="sum-total"></span></div>
+          <button type="submit" form="checkout-form" id="pay-submit" class="dp-btn dp-btn--block">
+            <span id="pay-label">Continue to payment</span>
+          </button>
+          <p class="dp-hint" style="text-align:center">You'll choose UPI, card or net banking on the next screen.</p>
+          <p style="text-align:center;margin:0.5rem 0 0"><a class="dp-link" href="/cart">← Back to cart</a></p>
+        </aside>
+      </div>
+    </div>
+
+    <script is:inline type="application/json" id="products-data" set:html={productsJson}></script>
+    <script is:inline src="/shipping.js"></script>
+    <script is:inline src="/demo-pay.js"></script>
+  </div>
+</Layout>

@@ -1,0 +1,129 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/checkout.css";
+---
+<Layout title="Secure payment (demo)">
+  <div class="dp-wrap" data-dp-page="pay">
+    <ol class="dp-steps" aria-label="Checkout progress">
+      <li class="done"><span class="n">✓</span>Cart</li>
+      <li class="done"><span class="n">✓</span>Details</li>
+      <li class="current"><span class="n">3</span>Payment</li>
+      <li><span class="n">4</span>Confirmation</li>
+    </ol>
+
+    <div class="gw">
+      <aside class="gw-side">
+        <div class="gw-brand">My<span>Shop</span><em>Pay</em></div>
+        <span class="gw-demo-tag">DEMO · SIMULATED</span>
+        <p class="gw-label">Amount payable</p>
+        <p class="gw-amount" id="pay-amount">₹0</p>
+        <dl class="gw-meta">
+          <dt>Order</dt><dd id="pay-order-ref"></dd>
+          <dt>Items</dt><dd id="pay-items-count"></dd>
+          <dt>Customer</dt><dd id="pay-customer"></dd>
+        </dl>
+        <p class="gw-note">🔒 This is a simulation. No real money moves, and no real card number, UPI PIN or OTP is ever requested.</p>
+      </aside>
+
+      <section class="gw-main">
+        <h1>Select payment method</h1>
+
+        <div class="gw-tabs" role="tablist" aria-label="Payment methods">
+          <button type="button" class="gw-tab" role="tab" data-method="upi">UPI</button>
+          <button type="button" class="gw-tab" role="tab" data-method="card">Card</button>
+          <button type="button" class="gw-tab" role="tab" data-method="netbanking">Net banking</button>
+        </div>
+
+        <!-- UPI -->
+        <div id="panel-upi" class="gw-panel" role="tabpanel">
+          <div class="dp-field">
+            <label for="upi-id">UPI ID</label>
+            <input class="dp-input" id="upi-id" type="text" autocomplete="off" placeholder="demo@okbank" />
+            <p class="dp-err" id="e-upi" role="alert"></p>
+          </div>
+          <div class="chips">
+            <span class="dp-hint" style="margin:0">Try:</span>
+            <button type="button" class="chip" data-fill-upi="demo@okbank">demo@okbank</button>
+            <button type="button" class="chip" data-fill-upi="student@demoupi">student@demoupi</button>
+          </div>
+          <p class="dp-hint">A demo "collect request" is simulated. No UPI PIN is needed.</p>
+        </div>
+
+        <!-- Card -->
+        <div id="panel-card" class="gw-panel" role="tabpanel" hidden>
+          <div class="gw-note-box">Use the demo card <strong>4111 1111 1111 1111</strong>, any future expiry and any CVV. <strong>Don't enter a real card.</strong> Nothing typed here is stored.</div>
+          <div class="dp-field">
+            <label for="card-number">Card number <span class="card-brand" id="card-brand"></span></label>
+            <input class="dp-input" id="card-number" type="text" inputmode="numeric" autocomplete="off" placeholder="4111 1111 1111 1111" />
+            <p class="dp-err" id="e-card-number" role="alert"></p>
+          </div>
+          <div class="dp-field">
+            <label for="card-name">Name on card</label>
+            <input class="dp-input" id="card-name" type="text" autocomplete="off" placeholder="Demo User" />
+            <p class="dp-err" id="e-card-name" role="alert"></p>
+          </div>
+          <div class="gw-row2">
+            <div class="dp-field">
+              <label for="card-expiry">Expiry (MM/YY)</label>
+              <input class="dp-input" id="card-expiry" type="text" inputmode="numeric" autocomplete="off" placeholder="12/30" />
+              <p class="dp-err" id="e-card-expiry" role="alert"></p>
+            </div>
+            <div class="dp-field">
+              <label for="card-cvv">CVV</label>
+              <input class="dp-input" id="card-cvv" type="password" inputmode="numeric" autocomplete="off" placeholder="•••" />
+              <p class="dp-err" id="e-card-cvv" role="alert"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Net banking -->
+        <div id="panel-netbanking" class="gw-panel" role="tabpanel" hidden>
+          <p class="dp-label" style="margin:0">Choose a demo bank</p>
+          <div id="bank-grid" class="bank-grid"></div>
+          <p class="dp-err" id="e-bank" role="alert"></p>
+        </div>
+
+        <button type="button" id="pay-btn" class="dp-btn dp-btn--block">Pay</button>
+        <p class="gw-foot"><a class="dp-link" href="/checkout">← Edit details</a> · <a class="dp-link" href="/cart">Back to cart</a></p>
+      </section>
+    </div>
+
+    <!-- Processing / demo bank overlay -->
+    <div class="gw-overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Demo payment progress" hidden>
+      <div class="gw-modal">
+        <div id="ov-processing">
+          <div class="spinner" aria-hidden="true"></div>
+          <h2 tabindex="-1">Processing demo payment</h2>
+          <p>Please don't close this window. This is a simulation.</p>
+          <ul class="ov-steps" id="ov-steps" aria-live="polite"></ul>
+        </div>
+
+        <div id="ov-bank" hidden>
+          <span class="gw-demo-tag gw-demo-tag--dark">DEMO BANK PAGE</span>
+          <h2 tabindex="-1">Choose a demo outcome</h2>
+          <p>A real bank would ask for an OTP or UPI approval here. This demo never asks for either. Pick how the payment should end:</p>
+          <label for="fail-reason">If you simulate a failure, use this reason:</label>
+          <select id="fail-reason" class="dp-input">
+            <option>Insufficient balance (demo)</option>
+            <option>Bank declined the transaction (demo)</option>
+            <option>Payment timed out (demo)</option>
+            <option>Cancelled by user (demo)</option>
+          </select>
+          <div class="ov-actions">
+            <button type="button" id="sim-success" class="dp-btn dp-btn--ok">Simulate success</button>
+            <button type="button" id="sim-fail" class="dp-btn dp-btn--bad">Simulate failure</button>
+          </div>
+          <button type="button" id="ov-cancel" class="dp-link">Cancel and go back</button>
+        </div>
+
+        <div id="ov-final" hidden>
+          <div class="spinner" aria-hidden="true"></div>
+          <h2 tabindex="-1">Finalising…</h2>
+          <p>Confirming your demo order.</p>
+        </div>
+      </div>
+    </div>
+
+    <script is:inline src="/demo-pay.js"></script>
+  </div>
+</Layout>
