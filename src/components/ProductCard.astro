@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 interface Props {
 	product: {
 		id: string;
@@ -8,7 +10,7 @@ interface Props {
 		category: string;
 		rating: number;
 		badge: string | null;
-		image: string;
+		image: ImageMetadata;
 	};
 }
 
@@ -22,7 +24,7 @@ const badgeClass =
 	<a href={`/products/${product.id}`}>
 		<div class="product-card__image">
 			{product.badge && <span class={badgeClass}>{product.badge}</span>}
-			<img src={product.image} alt={product.name} width="800" height="600" />
+			<Image src={product.image} alt={product.name} width={800} height={600} />
 		</div>
 	</a>
 	<div class="product-card__body">

@@ -1,0 +1,11 @@
+{
+  "id": "8",
+  "name": "Aviator Sunglasses",
+  "price": 1299,
+  "oldPrice": 1799,
+  "category": "Accessories",
+  "rating": 4.2,
+  "badge": null,
+  "image": "../../assets/products/aviator-sunglasses.jpg",
+  "description": "Lightweight aviator sunglasses with UV protection, a metal frame, and a timeless shape that pairs with any outfit."
+}

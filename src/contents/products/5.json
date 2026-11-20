@@ -1,0 +1,11 @@
+{
+  "id": "5",
+  "name": "Cotton T-Shirt",
+  "price": 899,
+  "oldPrice": 1299,
+  "category": "Fashion",
+  "rating": 4.3,
+  "badge": "Sale",
+  "image": "../../assets/products/cotton-tshirt.jpg",
+  "description": "Soft mid-weight cotton tee with a relaxed fit and clean crew neck. Easy everyday staple for any wardrobe."
+}

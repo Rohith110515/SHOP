@@ -1,0 +1,11 @@
+{
+  "id": "6",
+  "name": "Denim Jacket",
+  "price": 2499,
+  "oldPrice": null,
+  "category": "Fashion",
+  "rating": 4.7,
+  "badge": null,
+  "image": "../../assets/products/denim-jacket.jpg",
+  "description": "Classic denim jacket with a structured silhouette, metal buttons, and pockets that work from weekday to weekend."
+}

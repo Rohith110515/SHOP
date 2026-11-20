@@ -1,8 +1,14 @@
 
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import ProductCard from '../../components/ProductCard.astro';
-import products from '../../data/products.json';
+
+const productEntries = await getCollection('products');
+
+const products = productEntries
+	.map((entry) => entry.data)
+	.sort((a, b) => Number(a.id) - Number(b.id));
 
 const categories = ['All', 'Electronics', 'Fashion', 'Accessories'];
 ---

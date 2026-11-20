@@ -1,0 +1,11 @@
+{
+  "id": "3",
+  "name": "Smart Watch",
+  "price": 7999,
+  "oldPrice": 9999,
+  "category": "Electronics",
+  "rating": 4.4,
+  "badge": "New",
+  "image": "../../assets/products/smart-watch.jpg",
+  "description": "Fitness smartwatch with heart-rate tracking, sleep insights, and a bright always-on display that lasts up to 7 days."
+}
