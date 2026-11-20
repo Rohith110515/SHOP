@@ -1,5 +1,5 @@
 
-import { products } from '../lib/products.js';
+import products from '../data/products.json';
 import {
   CART_STORAGE_KEY,
   getCartItems,

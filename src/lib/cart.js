@@ -1,5 +1,5 @@
 
-import { products } from './products.js';
+import products from '../data/products.json';
 
 export const CART_STORAGE_KEY = 'astro-shop-cart';
 export const LEGACY_CART_STORAGE_KEY = 'cart';

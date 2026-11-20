@@ -1,14 +1,12 @@
 
 ---
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-export async function getStaticPaths() {
-	const productEntries = await getCollection('products');
+import products from '../../data/products.json';
 
-	return productEntries.map((entry) => ({
-		params: { id: entry.data.id },
-		props: { product: entry.data },
+export function getStaticPaths() {
+	return products.map((product) => ({
+		params: { id: String(product.id) },
+		props: { product },
 	}));
 }
 
@@ -29,7 +27,7 @@ const badgeClass =
 	<article class="detail">
 		<div class="product-card__image">
 			{product.badge && <span class={badgeClass}>{product.badge}</span>}
-			<Image src={product.image} alt={product.name} width={800} height={600} />
+			<img src={product.image} alt={product.name} width="800" height="600" />
 		</div>
 		<div class="detail-body">
 			<p class="eyebrow">{product.category}</p>
