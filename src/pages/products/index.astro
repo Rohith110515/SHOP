@@ -1,3 +1,4 @@
+
 ---
 import Layout from '../../layouts/Layout.astro';
 import ProductCard from '../../components/ProductCard.astro';
@@ -7,20 +8,35 @@ const categories = ['All', 'Electronics', 'Fashion', 'Accessories'];
 ---
 
 <Layout title="Products | MyShop">
-	<h1>All products</h1>
+	<h1 id="products-heading">All products</h1>
+
 	<div class="toolbar">
 		<label class="muted" for="product-search">Search</label>
-		<input class="search" id="product-search" type="search" placeholder="Search by name" />
+		<input
+			class="search"
+			id="product-search"
+			type="search"
+			placeholder="Search by name"
+		/>
+
 		<div class="chips" id="category-chips">
 			{categories.map((category) => (
-				<button class="chip" type="button" data-filter={category}>
+				<button
+					class="chip"
+					type="button"
+					data-filter={category}
+				>
 					{category}
 				</button>
 			))}
 		</div>
 	</div>
+
 	<div class="product-grid" id="catalog">
 		{products.map((product) => <ProductCard product={product} />)}
 	</div>
-	<p class="empty-state hidden" id="no-products">No products found</p>
+
+	<p class="empty-state hidden" id="no-products">
+		No products found
+	</p>
 </Layout>

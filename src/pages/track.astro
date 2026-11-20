@@ -1,21 +1,34 @@
+
 ---
 import Layout from "../layouts/Layout.astro";
 import "../styles/checkout.css";
 import "../styles/shipping.css";
 ---
+
 <Layout title="Track shipment (demo)">
   <div class="dp-wrap" data-dp-page="track">
     <h1>Track your shipment</h1>
 
     <div class="dp-banner" role="note">
       <span aria-hidden="true">⚠️</span>
-      <span><strong>Demo tracking.</strong> Statuses only change when you press the demo button below. A real Shiprocket integration would receive these updates from its tracking API or webhooks.</span>
+      <span>
+        <strong>Demo tracking.</strong>
+        Statuses only change when you press the demo button below. A real Shiprocket integration would receive these updates from its tracking API or webhooks.
+      </span>
     </div>
 
     <form id="track-form" class="dp-card" style="margin-bottom:1.5rem">
-      <label class="dp-label" for="track-q">Order reference or AWB number</label>
+      <label class="dp-label" for="track-q">
+        Order reference or AWB number
+      </label>
       <div class="track-form" style="margin-top:0.4rem">
-        <input class="dp-input" id="track-q" type="text" placeholder="MS-XXXXXXXX or DEMO0123456789" autocomplete="off" />
+        <input
+          class="dp-input"
+          id="track-q"
+          type="text"
+          placeholder="MS-XXXXXXXX or DEMO0123456789"
+          autocomplete="off"
+        />
         <button type="submit" class="dp-btn">Track</button>
       </div>
     </form>
@@ -28,9 +41,18 @@ import "../styles/shipping.css";
           <p class="dp-hint" style="margin:0">Current status</p>
           <span id="tr-status" class="st-badge"></span>
         </div>
+
         <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
-          <button type="button" id="adv-btn" class="dp-btn">Advance status (demo) ›</button>
-          <button type="button" id="reset-btn" class="dp-btn dp-btn--ghost">Restart timeline</button>
+          <button type="button" id="adv-btn" class="dp-btn">
+            Advance status (demo) ›
+          </button>
+          <button
+            type="button"
+            id="reset-btn"
+            class="dp-btn dp-btn--ghost"
+          >
+            Restart timeline
+          </button>
         </div>
       </div>
 
@@ -45,9 +67,14 @@ import "../styles/shipping.css";
       <ul class="tl" id="tl" aria-label="Shipment timeline"></ul>
     </div>
 
-    <p style="margin-top:1.5rem"><a class="dp-link" href="/products">← Continue shopping</a></p>
+    <p style="margin-top:1.5rem">
+      <a class="dp-link" href="/products">← Continue shopping</a>
+    </p>
 
     <script is:inline src="/shipping.js"></script>
-    <script is:inline src="/demo-pay.js"></script>
+
+    <script>
+      import "../scripts/demo-pay.js";
+    </script>
   </div>
 </Layout>

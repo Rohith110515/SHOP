@@ -1,8 +1,10 @@
+
 ---
 import Layout from "../layouts/Layout.astro";
 import "../styles/checkout.css";
 import "../styles/shipping.css";
 ---
+
 <Layout title="Order confirmed (demo)">
   <div class="dp-wrap" data-dp-page="success">
     <ol class="dp-steps" aria-label="Checkout progress">
@@ -15,15 +17,20 @@ import "../styles/shipping.css";
     <div class="dp-result">
       <div class="dp-icon ok" aria-hidden="true">✓</div>
       <h1>Payment successful (demo)</h1>
-      <p style="color:#64748b">Your simulated order is confirmed. No real money was charged and no real parcel will be sent.</p>
+      <p style="color:#64748b">
+        Your simulated order is confirmed. No real money was charged and no real parcel will be sent.
+      </p>
 
       <div class="dp-card" id="ship-card">
         <h2>Shipment</h2>
         <div id="ship-progress">
-          <p class="dp-hint">Creating your shipment with the demo Shiprocket-style courier service…</p>
+          <p class="dp-hint">
+            Creating your shipment with the demo Shiprocket-style courier service…
+          </p>
           <ul class="ov-steps" id="ship-steps" aria-live="polite"></ul>
           <p class="dp-err" id="ship-error" role="alert" hidden></p>
         </div>
+
         <div id="ship-details" hidden>
           <dl class="dp-details">
             <div><dt>Courier</dt><dd id="sh-courier"></dd></div>
@@ -32,7 +39,9 @@ import "../styles/shipping.css";
             <div><dt>Expected delivery</dt><dd id="sh-etd"></dd></div>
             <div><dt>Status</dt><dd id="sh-status"></dd></div>
           </dl>
-          <a id="track-link" class="dp-btn dp-btn--ghost" href="/track">📦 Track shipment</a>
+          <a id="track-link" class="dp-btn dp-btn--ghost" href="/track">
+            📦 Track shipment
+          </a>
         </div>
       </div>
 
@@ -48,18 +57,36 @@ import "../styles/shipping.css";
         </dl>
 
         <div id="ok-items"></div>
-        <div class="dp-row"><span>Subtotal</span><span id="sum-subtotal"></span></div>
-        <div class="dp-row"><span>Shipping</span><span id="sum-shipping"></span></div>
-        <div class="dp-row total"><span>Total paid (demo)</span><span id="sum-total"></span></div>
+        <div class="dp-row">
+          <span>Subtotal</span>
+          <span id="sum-subtotal"></span>
+        </div>
+        <div class="dp-row">
+          <span>Shipping</span>
+          <span id="sum-shipping"></span>
+        </div>
+        <div class="dp-row total">
+          <span>Total paid (demo)</span>
+          <span id="sum-total"></span>
+        </div>
       </div>
 
       <div class="dp-actions">
         <a class="dp-btn" href="/products">Continue shopping</a>
-        <button type="button" id="download-receipt" class="dp-btn dp-btn--ghost">⬇ Download demo receipt</button>
+        <button
+          type="button"
+          id="download-receipt"
+          class="dp-btn dp-btn--ghost"
+        >
+          ⬇ Download demo receipt
+        </button>
       </div>
     </div>
 
     <script is:inline src="/shipping.js"></script>
-    <script is:inline src="/demo-pay.js"></script>
+
+    <script>
+      import "../scripts/demo-pay.js";
+    </script>
   </div>
 </Layout>
