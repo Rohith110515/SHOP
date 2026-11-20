@@ -1,3 +1,4 @@
+
 ---
 import Layout from '../../layouts/Layout.astro';
 import products from '../../data/products.json';
@@ -38,9 +39,9 @@ const badgeClass =
 			</p>
 			<p>{product.description}</p>
 			<div class="detail-actions">
-				<div class="qty-stepper" aria-label="Quantity">
+				<div class="qty-stepper" role="group" aria-label="Product quantity">
 					<button type="button" data-qty-step="-1" aria-label="Decrease quantity">−</button>
-					<span id="qty-value">1</span>
+					<span id="qty-value" aria-live="polite" aria-atomic="true">1</span>
 					<button type="button" data-qty-step="1" aria-label="Increase quantity">+</button>
 				</div>
 				<button class="btn" type="button" data-add={product.id}>Add to cart</button>

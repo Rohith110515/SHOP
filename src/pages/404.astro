@@ -1,0 +1,98 @@
+
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Page Not Found | MyShop">
+  <section class="not-found">
+    <p class="error-code">404</p>
+    <h1>Oops! Page not found</h1>
+    <p class="message">
+      The page you're looking for doesn't exist or may have been moved.
+    </p>
+
+    <div class="actions">
+      <a href="/" class="primary-btn">Back to Home</a>
+      <a href="/products" class="secondary-btn">Explore Products</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .not-found {
+    min-height: 65vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 48px 20px;
+  }
+
+  .error-code {
+    font-size: clamp(5rem, 15vw, 9rem);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -6px;
+    margin: 0 0 20px;
+    color: #7565e8;
+  }
+
+  h1 {
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    margin: 0 0 12px;
+    color: var(--text, #222);
+  }
+
+  .message {
+    max-width: 440px;
+    line-height: 1.7;
+    color: var(--muted, #777);
+    margin: 0 0 28px;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .actions a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .actions a:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+  }
+
+  .primary-btn {
+    background: #7565e8;
+    color: white;
+  }
+
+  .secondary-btn {
+    border: 1px solid #7565e8;
+    color: #7565e8;
+  }
+
+  @media (max-width: 420px) {
+    .actions {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .actions a {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+</style>

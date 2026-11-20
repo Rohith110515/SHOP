@@ -1,10 +1,13 @@
 
 import {
   getCartItems,
-  getSubtotal,
-  getCourierShipping,
   saveCart,
 } from "../lib/cart.js";
+
+import {
+  getSubtotal,
+  getCourierShipping,
+} from "../lib/pricing.js";
 
 (function () {
   "use strict";

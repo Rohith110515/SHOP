@@ -7,6 +7,8 @@ import {
   saveCart,
 } from '../lib/cart.js';
 
+import { getCartTotals } from '../lib/pricing.js';
+
 function formatPrice(price) {
   return '₹' + Number(price).toLocaleString('en-IN');
 }
@@ -141,17 +143,14 @@ function renderCartPage() {
     return;
   }
 
-  const subtotal = cart.reduce(
-    (sum, item) => sum + item.price * item.qty,
-    0
-  );
+  // All cart pricing comes from the shared pricing module.
+  const totals = getCartTotals(cart);
 
-  const shipping = subtotal >= 999 ? 0 : 99;
-  const remaining = Math.max(0, 999 - subtotal);
+  const { subtotal, shipping, total, remainingForFreeShipping } = totals;
 
   const shippingNote = shipping === 0
     ? 'You have unlocked free shipping.'
-    : `Add ${formatPrice(remaining)} more for free shipping.`;
+    : `Add ${formatPrice(remainingForFreeShipping)} more for free shipping.`;
 
   root.innerHTML = `
     <div class="cart-layout">
@@ -224,7 +223,7 @@ function renderCartPage() {
 
         <div class="summary-row summary-total">
           <span>Total</span>
-          <span>${formatPrice(subtotal + shipping)}</span>
+          <span>${formatPrice(total)}</span>
         </div>
 
         <button class="btn" id="checkout-btn" type="button">
